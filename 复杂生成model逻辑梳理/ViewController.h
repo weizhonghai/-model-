@@ -10,6 +10,6 @@
 
 @interface ViewController : UIViewController
 
-
+@property (nonatomic, strong) NSArray * smallmodel;
 @end
 

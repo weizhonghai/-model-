@@ -15,6 +15,9 @@
 		224B03B41DFC019900CF84E1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 224B03B21DFC019900CF84E1 /* LaunchScreen.storyboard */; };
 		224B03BF1DFC019900CF84E1 /* ____model____Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 224B03BE1DFC019900CF84E1 /* ____model____Tests.m */; };
 		224B03CA1DFC019900CF84E1 /* ____model____UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 224B03C91DFC019900CF84E1 /* ____model____UITests.m */; };
+		2271630F1E01417400BA980A /* zhViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2271630E1E01417400BA980A /* zhViewController.m */; };
+		227163131E014FBB00BA980A /* ZHModelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 227163111E014FBB00BA980A /* ZHModelCell.m */; };
+		227163141E014FBB00BA980A /* ZHModelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 227163121E014FBB00BA980A /* ZHModelCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +54,11 @@
 		224B03C51DFC019900CF84E1 /* 复杂生成model逻辑梳理UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "复杂生成model逻辑梳理UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		224B03C91DFC019900CF84E1 /* ____model____UITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "____model____UITests.m"; sourceTree = "<group>"; };
 		224B03CB1DFC019900CF84E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2271630D1E01417400BA980A /* zhViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zhViewController.h; sourceTree = "<group>"; };
+		2271630E1E01417400BA980A /* zhViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = zhViewController.m; sourceTree = "<group>"; };
+		227163101E014FBB00BA980A /* ZHModelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHModelCell.h; sourceTree = "<group>"; };
+		227163111E014FBB00BA980A /* ZHModelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHModelCell.m; sourceTree = "<group>"; };
+		227163121E014FBB00BA980A /* ZHModelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZHModelCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +113,11 @@
 				224B03A81DFC019900CF84E1 /* AppDelegate.m */,
 				224B03AA1DFC019900CF84E1 /* ViewController.h */,
 				224B03AB1DFC019900CF84E1 /* ViewController.m */,
+				2271630D1E01417400BA980A /* zhViewController.h */,
+				2271630E1E01417400BA980A /* zhViewController.m */,
+				227163101E014FBB00BA980A /* ZHModelCell.h */,
+				227163111E014FBB00BA980A /* ZHModelCell.m */,
+				227163121E014FBB00BA980A /* ZHModelCell.xib */,
 				224B03AD1DFC019900CF84E1 /* Main.storyboard */,
 				224B03B01DFC019900CF84E1 /* Assets.xcassets */,
 				224B03B21DFC019900CF84E1 /* LaunchScreen.storyboard */,
@@ -252,6 +265,7 @@
 				224B03B41DFC019900CF84E1 /* LaunchScreen.storyboard in Resources */,
 				224B03B11DFC019900CF84E1 /* Assets.xcassets in Resources */,
 				224B03AF1DFC019900CF84E1 /* Main.storyboard in Resources */,
+				227163141E014FBB00BA980A /* ZHModelCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,7 +291,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				224B03AC1DFC019900CF84E1 /* ViewController.m in Sources */,
+				227163131E014FBB00BA980A /* ZHModelCell.m in Sources */,
 				224B03A91DFC019900CF84E1 /* AppDelegate.m in Sources */,
+				2271630F1E01417400BA980A /* zhViewController.m in Sources */,
 				224B03A61DFC019900CF84E1 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -516,6 +532,7 @@
 				224B03D01DFC019900CF84E1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		224B03D11DFC019900CF84E1 /* Build configuration list for PBXNativeTarget "复杂生成model逻辑梳理Tests" */ = {
 			isa = XCConfigurationList;
@@ -524,6 +541,7 @@
 				224B03D31DFC019900CF84E1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		224B03D41DFC019900CF84E1 /* Build configuration list for PBXNativeTarget "复杂生成model逻辑梳理UITests" */ = {
 			isa = XCConfigurationList;
@@ -532,6 +550,7 @@
 				224B03D61DFC019900CF84E1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

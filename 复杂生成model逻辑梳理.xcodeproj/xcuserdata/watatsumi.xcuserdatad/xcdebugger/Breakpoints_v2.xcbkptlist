@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x590d;&#x6742;&#x751f;&#x6210;model&#x903b;&#x8f91;&#x68b3;&#x7406;/zhViewController.m"
-            timestampString = "503472205.94706"
+            timestampString = "512040812.828448"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "230"
-            endingLineNumber = "230"
+            startingLineNumber = "237"
+            endingLineNumber = "237"
             landmarkName = "-change:"
             landmarkType = "7">
          </BreakpointContent>
@@ -68,11 +68,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x590d;&#x6742;&#x751f;&#x6210;model&#x903b;&#x8f91;&#x68b3;&#x7406;/zhViewController.m"
-            timestampString = "503472205.94706"
+            timestampString = "512040812.828448"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "241"
-            endingLineNumber = "241"
+            startingLineNumber = "248"
+            endingLineNumber = "248"
             landmarkName = "-change:"
             landmarkType = "7">
          </BreakpointContent>
@@ -84,11 +84,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x590d;&#x6742;&#x751f;&#x6210;model&#x903b;&#x8f91;&#x68b3;&#x7406;/zhViewController.m"
-            timestampString = "503472205.94706"
+            timestampString = "512040812.828448"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "160"
-            endingLineNumber = "160"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
             landmarkName = "-ThoughtWithStringName:Dictionary:"
             landmarkType = "7">
          </BreakpointContent>
@@ -100,11 +100,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x590d;&#x6742;&#x751f;&#x6210;model&#x903b;&#x8f91;&#x68b3;&#x7406;/zhViewController.m"
-            timestampString = "503473456.861574"
+            timestampString = "512040812.828448"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "261"
-            endingLineNumber = "261"
+            startingLineNumber = "268"
+            endingLineNumber = "268"
             landmarkName = "-generate:"
             landmarkType = "7">
          </BreakpointContent>
@@ -116,11 +116,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x590d;&#x6742;&#x751f;&#x6210;model&#x903b;&#x8f91;&#x68b3;&#x7406;/zhViewController.m"
-            timestampString = "503472205.94706"
+            timestampString = "512040812.828448"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "255"
-            endingLineNumber = "255"
+            startingLineNumber = "262"
+            endingLineNumber = "262"
             landmarkName = "-generate:"
             landmarkType = "7">
          </BreakpointContent>
@@ -132,11 +132,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x590d;&#x6742;&#x751f;&#x6210;model&#x903b;&#x8f91;&#x68b3;&#x7406;/zhViewController.m"
-            timestampString = "503473456.861574"
+            timestampString = "512040812.828448"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "272"
-            endingLineNumber = "272"
+            startingLineNumber = "279"
+            endingLineNumber = "279"
             landmarkName = "-createPath:WithInfo:"
             landmarkType = "7">
          </BreakpointContent>
@@ -155,6 +155,54 @@
             endingLineNumber = "97"
             landmarkName = "-ThoughtWithStringName:Dictionary:"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x590d;&#x6742;&#x751f;&#x6210;model&#x903b;&#x8f91;&#x68b3;&#x7406;/zhViewController.m"
+            timestampString = "512040812.828448"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
+            landmarkName = "-ThoughtWithStringName:Dictionary:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[zhViewController ThoughtWithStringName:Dictionary:]"
+                  moduleName = "&#x590d;&#x6742;&#x751f;&#x6210;model&#x903b;&#x8f91;&#x68b3;&#x7406;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/watatsumi/Desktop/%E6%9C%AA%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6%E5%A4%B9/%E5%A4%8D%E6%9D%82%E7%94%9F%E6%88%90model%E9%80%BB%E8%BE%91%E6%A2%B3%E7%90%86/%E5%A4%8D%E6%9D%82%E7%94%9F%E6%88%90model%E9%80%BB%E8%BE%91%E6%A2%B3%E7%90%86/zhViewController.m"
+                  timestampString = "512037333.553897"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "145"
+                  endingLineNumber = "145"
+                  offsetFromSymbolStart = "4401">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[zhViewController ThoughtWithStringName:Dictionary:]"
+                  moduleName = "&#x590d;&#x6742;&#x751f;&#x6210;model&#x903b;&#x8f91;&#x68b3;&#x7406;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/watatsumi/Desktop/%E6%9C%AA%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6%E5%A4%B9/%E5%A4%8D%E6%9D%82%E7%94%9F%E6%88%90model%E9%80%BB%E8%BE%91%E6%A2%B3%E7%90%86/%E5%A4%8D%E6%9D%82%E7%94%9F%E6%88%90model%E9%80%BB%E8%BE%91%E6%A2%B3%E7%90%86/zhViewController.m"
+                  timestampString = "512037333.555145"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "145"
+                  endingLineNumber = "145"
+                  offsetFromSymbolStart = "4409">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

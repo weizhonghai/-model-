@@ -135,13 +135,20 @@ static NSString *info_m;
                             SEL_String = [SEL_String stringByAppendingString:[NSString stringWithFormat:@",@\"%@\" : [%@ class]",propety,ModifyDict[propety]]];
                         }
                     }
-                    last_Str = [NSString stringWithFormat:@"NSArray <%@ *> ",objec_name];
-                    info_h = [[NSString stringWithFormat:@"@class %@;\n",objec_name] stringByAppendingString:info_h];
-                    [tableArray addObject:propety];
-                    [flag_Dict setObject:[code[propety] firstObject] forKey:propety];
+                    if ([code[propety] count] > 0) {
+                        last_Str = [NSString stringWithFormat:@"NSArray <%@ *> *",objec_name];
+                        info_h = [[NSString stringWithFormat:@"@class %@;\n",objec_name] stringByAppendingString:info_h];
+                        [tableArray addObject:propety];
+                        [flag_Dict setObject:[code[propety] firstObject] forKey:propety];
+                    }else{
+                        last_Str = @"NSArray/**因为当前数组返回空，需要自行判断数组内的model*/ *";
+                    }
 //                    [flag_Dict addObject:[code[propety] firstObject]];
+                }else if ([code[propety] isKindOfClass:[NSNull class]]){
+                    center_Str = @"strong) ";
+                    last_Str = @"需要自行确认类型 *";
                 }else{
-                    NSLog(@"没有考虑到的情况");
+                    NSLog(@"没有考虑到的情况%@",code[propety]);
                 }
             }
             NSString *propetyWhole = [NSString stringWithFormat:@"%@%@%@%@;",before_Str,center_Str,last_Str,propety];
@@ -256,10 +263,10 @@ static NSString *info_m;
     [cellArray removeAllObjects];
     [tableArray addObject:@"文件名称"];
     info_h = @"#import <Foundation/Foundation.h>\n\n";
-    info_m = [NSString stringWithFormat:@"#import \"%@.h\"",ModifyDict[@"文件名称"]];
+    info_m = [NSString stringWithFormat:@"#import \"%@.h\"\n",ModifyDict[@"文件名称"]];
     [self ThoughtWithStringName:ModifyDict[@"文件名称"] Dictionary:self.JSONDict];
-    [self createPath:[NSString stringWithFormat:@"%@.h\n\n",ModifyDict[@"文件名称"]] WithInfo:info_h];
-    [self createPath:[NSString stringWithFormat:@"%@.m\n\n",ModifyDict[@"文件名称"]] WithInfo:info_m];
+    [self createPath:[NSString stringWithFormat:@"%@.h",ModifyDict[@"文件名称"]] WithInfo:info_h];
+    [self createPath:[NSString stringWithFormat:@"%@.m",ModifyDict[@"文件名称"]] WithInfo:info_m];
     info_h = @"#import <Foundation/Foundation.h>\n\n";
 }
 #pragma mark 创建文件

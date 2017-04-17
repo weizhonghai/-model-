@@ -10,4 +10,14 @@
 
 @interface zhViewController : UIViewController
 
+/**
+ 是否归档
+ */
+@property (nonatomic, assign) BOOL archive_bool;
+
+/**
+ 是否需要扩展类
+ */
+@property (nonatomic, assign) BOOL extension_bool;
+
 @end

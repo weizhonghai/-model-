@@ -8,11 +8,14 @@
 
 #import "zhViewController.h"
 #import "ZHModelCell.h"
-@interface zhViewController ()<UITableViewDelegate,UITableViewDataSource>
+#import "CreatViewController.h"
+
+@interface zhViewController ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate>
 {
     NSMutableArray *tableArray;
     NSMutableArray *cellArray;
     NSMutableDictionary *ModifyDict;
+    NSMutableArray *CreateArray;//下一个界面需要的数组
 }
 @property (nonatomic, strong) NSDictionary *JSONDict;
 @property (weak, nonatomic) IBOutlet UITextView *JSTextView;
@@ -42,6 +45,7 @@ static NSString *info_m;
     self.generateBtn.layer.borderWidth = 1;
     tableArray = [NSMutableArray array];
     cellArray = [NSMutableArray array];
+    CreateArray = [NSMutableArray array];
     ModifyDict = [NSMutableDictionary dictionary];
     [tableArray addObject:@"文件名称"];
     [self initWithTableView];
@@ -139,14 +143,26 @@ static NSString *info_m;
                         last_Str = [NSString stringWithFormat:@"NSArray <%@ *> *",objec_name];
                         info_h = [[NSString stringWithFormat:@"@class %@;\n",objec_name] stringByAppendingString:info_h];
                         [tableArray addObject:propety];
+                        if ([code[propety][0] isKindOfClass:[NSDictionary class]]) {
+                            //添加逻辑 -- 只有更改类名才可创建视图层
+                            for (NSMutableDictionary *dic in CreateArray) {
+                                if ([dic[@"ModelName"] isEqualToString:propety]) {
+                                    [CreateArray removeObject:dic];
+                                    break;
+                                }
+                            }
+                            NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"ModelName":objec_name,@"InfoName":[code[propety][0] allKeys]}];
+                            [CreateArray addObject:dic];
+                        }
+
                         [flag_Dict setObject:[code[propety] firstObject] forKey:propety];
                     }else{
-                        last_Str = @"NSArray/**因为当前数组返回空，需要自行判断数组内的model*/ *";
+                        last_Str = @"<#NSArray/**因为当前数组返回空，需要自行判断数组内的model*/ *#>";
                     }
 //                    [flag_Dict addObject:[code[propety] firstObject]];
                 }else if ([code[propety] isKindOfClass:[NSNull class]]){
                     center_Str = @"strong) ";
-                    last_Str = @"需要自行确认类型 *";
+                    last_Str = @"<#需要自行确认类型 *#>";
                 }else{
                     NSLog(@"没有考虑到的情况%@",code[propety]);
                 }
@@ -161,8 +177,16 @@ static NSString *info_m;
     }else{
         NSLog(@"无逻辑代码判断");
     }
-    info_h = [info_h stringByAppendingString:@"\n@end\n\n"];
     
+    if (self.archive_bool) {
+        NSString *subString = @"@end";
+        if ([info_h rangeOfString:subString].location == NSNotFound) {
+            info_h = [info_h stringByAppendingString:@"\n/**\n归档\n*/\n- (void)archive;\n\n/**\n解归档\n\n@return 返回会员信息对象\n*/\n+ (instancetype)unarchive;\n\n/**\n判断是否登录  主要用于判断本地是否缓存会员信息\n\n@return 返回BOOL类型\n*/\n+ (BOOL)isLogin;\n\n/**\n退出登录  并且删除本地缓存的会员信息\n*/\n+ (void)exit;\n"];
+            info_m = [info_m stringByAppendingString:@"- (void)archive{\n[NSKeyedArchiver archiveRootObject:self toFile:[NSHomeDirectory() stringByAppendingString:@\"/Documents/menber.plist\"]];\n}\n+ (instancetype)unarchive{\n    return [NSKeyedUnarchiver unarchiveObjectWithFile:[NSHomeDirectory() stringByAppendingString:@\"/Documents/menber.plist\"]];\n}\n\n+ (BOOL)isLogin{\n    NSFileManager *fm = [NSFileManager defaultManager];\n    if ([fm fileExistsAtPath:[NSHomeDirectory() stringByAppendingString:@\"/Documents/menber.plist\"]]) {\n        return YES;\n    }else{\n        return NO;\n    }\n}\n\n+ (void)exit{\n    NSFileManager *fm = [NSFileManager defaultManager];\n    NSError *error;\n    [fm removeItemAtPath:[NSHomeDirectory() stringByAppendingString:@\"/Documents/menber.plist\"] error:&error];\n}\n"];
+        }
+    }
+    
+    info_h = [info_h stringByAppendingString:@"\n@end\n\n"];
     info_m = [info_m stringByAppendingString:@"\n@end\n\n"];
     NSLog(@"\n@end\n");
     for (NSString *propety in [flag_Dict allKeys]) {
@@ -252,6 +276,7 @@ static NSString *info_m;
 - (IBAction)Pass:(UIButton *)sender {
     self.JSTextView.text = [[UIPasteboard generalPasteboard] string];
 }
+
 #pragma mark 生成文件
 - (IBAction)generate:(UIButton *)sender {
     for (ZHModelCell *cell in cellArray) {
@@ -267,6 +292,10 @@ static NSString *info_m;
     [self ThoughtWithStringName:ModifyDict[@"文件名称"] Dictionary:self.JSONDict];
     [self createPath:[NSString stringWithFormat:@"%@.h",ModifyDict[@"文件名称"]] WithInfo:info_h];
     [self createPath:[NSString stringWithFormat:@"%@.m",ModifyDict[@"文件名称"]] WithInfo:info_m];
+    [[[UIAlertView alloc] initWithTitle:@"提示" message:@"是否需要生成cell" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"取消", nil] show];
+    if (self.extension_bool) {
+        [self CreateExtension];
+    }
     info_h = @"#import <Foundation/Foundation.h>\n\n";
 }
 #pragma mark 创建文件
@@ -278,6 +307,28 @@ static NSString *info_m;
     NSFileManager *fm = [NSFileManager defaultManager];
     [fm createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
     return [data writeToFile:[path stringByAppendingPathComponent:name] atomically:YES];
+}
+
+#pragma mark 创建扩展类
+- (void)CreateExtension{
+    NSError *error;
+    NSString *string_h = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"NSObject+HKExtensionh" ofType:@"json"] encoding:NSUTF8StringEncoding error:&error];
+    NSString *string_m = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"NSObject+HKExtensionm" ofType:@"json"] encoding:NSUTF8StringEncoding error:&error];
+    NSArray *paths = [NSHomeDirectory() componentsSeparatedByString:@"/"];
+    NSString *path = [NSString stringWithFormat:@"/%@/%@/Desktop/海神的model/HKExtension",paths[1],paths[2]];
+    NSData *data_h = [string_h dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *data_m = [string_m dataUsingEncoding:NSUTF8StringEncoding];
+    NSFileManager *fm = [NSFileManager defaultManager];
+    [fm createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
+    [data_h writeToFile:[path stringByAppendingPathComponent:@"/NSObject+HKExtension.h"] atomically:YES];
+    [data_m writeToFile:[path stringByAppendingPathComponent:@"/NSObject+HKExtension.m"] atomically:YES];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 0) {
+        CreatViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"Creat"];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 @end

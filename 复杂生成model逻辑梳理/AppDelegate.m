@@ -16,7 +16,8 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+//    NSURL *url  = [NSURL URLWithString:@"https://itunes.apple.com/us/app/%E4%BC%97%E8%AF%9A%E8%BF%9E%E9%94%81/id1153451931?l=zh&ls=1&mt=8&action=write-review"];
+//    [[UIApplication sharedApplication] openURL:url];
     return YES;
 }
 

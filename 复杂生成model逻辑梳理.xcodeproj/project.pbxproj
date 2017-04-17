@@ -15,9 +15,13 @@
 		224B03B41DFC019900CF84E1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 224B03B21DFC019900CF84E1 /* LaunchScreen.storyboard */; };
 		224B03BF1DFC019900CF84E1 /* ____model____Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 224B03BE1DFC019900CF84E1 /* ____model____Tests.m */; };
 		224B03CA1DFC019900CF84E1 /* ____model____UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 224B03C91DFC019900CF84E1 /* ____model____UITests.m */; };
+		225CDFEB1EA217470002A616 /* CreateCell.json in Resources */ = {isa = PBXBuildFile; fileRef = 225CDFE91EA217470002A616 /* CreateCell.json */; };
 		2271630F1E01417400BA980A /* zhViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2271630E1E01417400BA980A /* zhViewController.m */; };
 		227163131E014FBB00BA980A /* ZHModelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 227163111E014FBB00BA980A /* ZHModelCell.m */; };
 		227163141E014FBB00BA980A /* ZHModelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 227163121E014FBB00BA980A /* ZHModelCell.xib */; };
+		2296994D1EA07A1300C540D9 /* NSObject+HKExtensionh.json in Resources */ = {isa = PBXBuildFile; fileRef = 2296994B1EA07A1300C540D9 /* NSObject+HKExtensionh.json */; };
+		2296994E1EA07A1300C540D9 /* NSObject+HKExtensionm.json in Resources */ = {isa = PBXBuildFile; fileRef = 2296994C1EA07A1300C540D9 /* NSObject+HKExtensionm.json */; };
+		229699511EA0BBEB00C540D9 /* CreatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 229699501EA0BBEB00C540D9 /* CreatViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,11 +58,16 @@
 		224B03C51DFC019900CF84E1 /* 复杂生成model逻辑梳理UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "复杂生成model逻辑梳理UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		224B03C91DFC019900CF84E1 /* ____model____UITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "____model____UITests.m"; sourceTree = "<group>"; };
 		224B03CB1DFC019900CF84E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		225CDFE91EA217470002A616 /* CreateCell.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CreateCell.json; sourceTree = "<group>"; };
 		2271630D1E01417400BA980A /* zhViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zhViewController.h; sourceTree = "<group>"; };
 		2271630E1E01417400BA980A /* zhViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = zhViewController.m; sourceTree = "<group>"; };
 		227163101E014FBB00BA980A /* ZHModelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHModelCell.h; sourceTree = "<group>"; };
 		227163111E014FBB00BA980A /* ZHModelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHModelCell.m; sourceTree = "<group>"; };
 		227163121E014FBB00BA980A /* ZHModelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZHModelCell.xib; sourceTree = "<group>"; };
+		2296994B1EA07A1300C540D9 /* NSObject+HKExtensionh.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "NSObject+HKExtensionh.json"; sourceTree = "<group>"; };
+		2296994C1EA07A1300C540D9 /* NSObject+HKExtensionm.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "NSObject+HKExtensionm.json"; sourceTree = "<group>"; };
+		2296994F1EA0BBEB00C540D9 /* CreatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreatViewController.h; sourceTree = "<group>"; };
+		229699501EA0BBEB00C540D9 /* CreatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreatViewController.m; sourceTree = "<group>"; wrapsLines = 1; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,7 +131,11 @@
 				224B03B01DFC019900CF84E1 /* Assets.xcassets */,
 				224B03B21DFC019900CF84E1 /* LaunchScreen.storyboard */,
 				224B03B51DFC019900CF84E1 /* Info.plist */,
+				2296994A1EA07A1300C540D9 /* HKExtension */,
 				224B03A41DFC019900CF84E1 /* Supporting Files */,
+				2296994F1EA0BBEB00C540D9 /* CreatViewController.h */,
+				229699501EA0BBEB00C540D9 /* CreatViewController.m */,
+				225CDFE91EA217470002A616 /* CreateCell.json */,
 			);
 			path = "复杂生成model逻辑梳理";
 			sourceTree = "<group>";
@@ -151,6 +164,15 @@
 				224B03CB1DFC019900CF84E1 /* Info.plist */,
 			);
 			path = "复杂生成model逻辑梳理UITests";
+			sourceTree = "<group>";
+		};
+		2296994A1EA07A1300C540D9 /* HKExtension */ = {
+			isa = PBXGroup;
+			children = (
+				2296994B1EA07A1300C540D9 /* NSObject+HKExtensionh.json */,
+				2296994C1EA07A1300C540D9 /* NSObject+HKExtensionm.json */,
+			);
+			path = HKExtension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,10 +284,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2296994E1EA07A1300C540D9 /* NSObject+HKExtensionm.json in Resources */,
 				224B03B41DFC019900CF84E1 /* LaunchScreen.storyboard in Resources */,
 				224B03B11DFC019900CF84E1 /* Assets.xcassets in Resources */,
+				2296994D1EA07A1300C540D9 /* NSObject+HKExtensionh.json in Resources */,
 				224B03AF1DFC019900CF84E1 /* Main.storyboard in Resources */,
 				227163141E014FBB00BA980A /* ZHModelCell.xib in Resources */,
+				225CDFEB1EA217470002A616 /* CreateCell.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,6 +319,7 @@
 				227163131E014FBB00BA980A /* ZHModelCell.m in Sources */,
 				224B03A91DFC019900CF84E1 /* AppDelegate.m in Sources */,
 				2271630F1E01417400BA980A /* zhViewController.m in Sources */,
+				229699511EA0BBEB00C540D9 /* CreatViewController.m in Sources */,
 				224B03A61DFC019900CF84E1 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -445,6 +471,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = CWY55A99VM;
 				INFOPLIST_FILE = "复杂生成model逻辑梳理/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "z.----model----";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -457,6 +484,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = CWY55A99VM;
 				INFOPLIST_FILE = "复杂生成model逻辑梳理/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "z.----model----";
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -8,12 +8,18 @@
 
 #import "ZHModelCell.h"
 
+@interface ZHModelCell ()
+
+
+@end
+
 @implementation ZHModelCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    
 }
+
 + (instancetype)cellWithTableView:(UITableView *)tableview{
     static NSString *id1 = @"row";
     ZHModelCell *cell = [tableview dequeueReusableCellWithIdentifier:id1];
@@ -24,12 +30,10 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-    if (selected) {
-        [self.infotextfield becomeFirstResponder];
-    }
-    // Configure the view for the selected state
+    
 }
 
 @end

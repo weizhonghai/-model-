@@ -13,10 +13,16 @@
 /**
  所有可能被选择成为cell的类
  */
-@property (nonatomic, strong) NSArray *CreatCellClass;
+@property (nonatomic, strong) NSArray <NSMutableDictionary *>*CreatCellClass;
 
 /**
  写入文件路径
  */
 @property (nonatomic, copy) NSString *path;
+
+/**
+ 当前类的名称
+ */
+@property (nonatomic, copy) NSString *TotalName;
+
 @end

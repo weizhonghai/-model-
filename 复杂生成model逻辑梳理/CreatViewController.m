@@ -19,8 +19,14 @@
 #import "CreatViewController.h"
 //#import <StoreKit/SKStoreReviewController.h>
 
-@interface CreatViewController ()
+@interface CreatViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, copy) NSString *CreatClassName;
+@property (weak, nonatomic) IBOutlet UITextField *TextField;
+@property (weak, nonatomic) IBOutlet UITableView *tableview;
+- (IBAction)CreatViewBtn:(UIButton *)sender;
+
+
+
 @end
 static NSString *info_h;
 static NSString *info_m;
@@ -29,11 +35,8 @@ static NSString *info_xib;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self CreatView_h];
-    [self CreatView_m];
-    [self CreatView_xib];
-//    [SKStoreReviewController requestReview];
-    NSLog(@"%@\n%@",info_h,info_m);
+    self.TextField.placeholder = self.CreatCellClass[0][@"ModelName"];
+    NSLog(@"%@\n%@\n%@",self.CreatCellClass,self.path,self.TotalName);
 }
 #pragma mark 创建视图层h文件
 - (void)CreatView_h{
@@ -58,10 +61,10 @@ static NSString *info_xib;
     info_h = [info_h stringByAppendingFormat:@"//  %@\n",nowtimeStr];
     info_h = [info_h stringByAppendingString:@"//\n"];
     info_h = [info_h stringByAppendingString:@"\n#import <UIKit/UIKit.h>\n"];
-    info_h = [info_h stringByAppendingFormat:@"\n@class %@;\n",self.CreatClassName];
-    info_h = [info_h stringByAppendingFormat:@"\n@interface %@Cell : UITableViewCell\n",self.CreatClassName];
+    info_h = [info_h stringByAppendingFormat:@"\n@class %@;\n",self.TextField.placeholder];
+    info_h = [info_h stringByAppendingFormat:@"\n@interface %@ : UITableViewCell\n",self.CreatClassName];
     info_h = [info_h stringByAppendingString:@"\n+ (instancetype)cellWithTableView:(UITableView *)tableview;\n"];
-    info_h = [info_h stringByAppendingFormat:@"\n@property (nonatomic, strong) %@ *model;\n",self.CreatClassName];
+    info_h = [info_h stringByAppendingFormat:@"\n@property (nonatomic, strong) %@ *model;\n",self.TextField.placeholder];
     info_h = [info_h stringByAppendingFormat:@"\n@end\n"];
     
     NSData *data_h = [info_h dataUsingEncoding:NSUTF8StringEncoding];
@@ -85,17 +88,35 @@ static NSString *info_xib;
     info_m = [NSString stringWithFormat:@"//  %@.m\n",self.CreatClassName];
     info_m = [info_m stringByAppendingFormat:@"//  %@\n",nowtimeStr];
     info_m = [info_m stringByAppendingString:@"//\n\n"];
-    info_m = [info_m stringByAppendingFormat:@"#import \"%@Cell.h\"\n",self.CreatClassName];
     info_m = [info_m stringByAppendingFormat:@"#import \"%@.h\"\n",self.CreatClassName];
-    info_m = [info_m stringByAppendingFormat:@"@interface %@Cell ()\n\n",self.CreatClassName];
-    
+    info_m = [info_m stringByAppendingFormat:@"#import \"%@.h\"\n",self.TotalName];
+    info_m = [info_m stringByAppendingFormat:@"@interface %@ ()\n\n",self.CreatClassName];
     //动态创建属性
+    for (NSDictionary *dic in self.CreatCellClass) {
+        if ([dic[@"ModelName"] isEqualToString:self.TextField.placeholder]) {
+            for (NSString *property_name in dic[@"InfoName"]) {
+                info_m = [info_m stringByAppendingFormat:@"/**\n<#注释#>\n*/"];
+                info_m = [info_m stringByAppendingFormat:@"\n@property (nonatomic , weak) IBOutlet <#需要自己设置控件类型#> * %@;\n\n",property_name];
+            }
+        }
+    }
     
     
     info_m = [info_m stringByAppendingFormat:@"\n@end\n"];
-    info_m = [info_m stringByAppendingFormat:@"\n@implementation %@Cell\n",self.CreatClassName];
+    info_m = [info_m stringByAppendingFormat:@"\n@implementation %@\n\n",self.CreatClassName];
     info_m = [info_m stringByAppendingFormat:@"- (void)awakeFromNib {\n    [super awakeFromNib];\n\n}\n\n+ (instancetype)cellWithTableView:(UITableView *)tableview{\n    static NSString *id1 = @\"row\";\n    %@Cell *cell = [tableview dequeueReusableCellWithIdentifier:id1];\n    if (!cell) {\n        cell = [[[NSBundle mainBundle] loadNibNamed:@\"%@Cell\" owner:self options:nil] firstObject];\n    }\n    cell.selectionStyle = UITableViewCellSelectionStyleNone;\n    return cell;\n}\n\n- (void)setSelected:(BOOL)selected animated:(BOOL)animated {\n    [super setSelected:selected animated:animated];\n    \n}\n",self.CreatClassName,self.CreatClassName];
-    info_m = [info_m stringByAppendingFormat:@"\n- (void)setModel:(%@ *)model{\n    _model = model;\n    \n}\n",self.CreatClassName];
+    info_m = [info_m stringByAppendingFormat:@"\n- (void)setModel:(%@ *)model{\n    _model = model;\n\n",self.CreatClassName];
+    
+
+    for (NSDictionary *dic in self.CreatCellClass) {
+        if ([dic[@"ModelName"] isEqualToString:self.TextField.placeholder]) {
+            for (NSString *property_name in dic[@"InfoName"]) {
+                info_m = [info_m stringByAppendingFormat:@"    self.%@;\n\n",property_name];
+            }
+        }
+    }
+    
+    info_m = [info_m stringByAppendingString:@"    \n}\n"];
     info_m = [info_m stringByAppendingString:@"\n@end\n\n"];
     NSData *data_m = [info_m dataUsingEncoding:NSUTF8StringEncoding];
     NSFileManager *fm = [NSFileManager defaultManager];
@@ -113,6 +134,40 @@ static NSString *info_xib;
     NSString *path = [self.path stringByAppendingString:@"/View"];
     [fm createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
     [data_xib writeToFile:[path stringByAppendingFormat:@"/%@.xib",self.CreatClassName] atomically:YES];
+}
+
+- (IBAction)CreatViewBtn:(UIButton *)sender {
+    if (self.TextField.text.length == 0) {
+        [[[UIAlertView alloc] initWithTitle:@"提示" message:@"更改名称不能为空" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+        return;
+    }
+    self.CreatClassName = self.TextField.text;
+    [self CreatView_h];
+    [self CreatView_m];
+    [self CreatView_xib];
+    NSLog(@"%@\n%@\n%@",info_h,info_m,info_xib);
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.CreatCellClass.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSString *id1 = @"row";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:id1];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:id1];
+    }
+    cell.textLabel.text = self.CreatCellClass[indexPath.row][@"ModelName"];
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    self.TextField.placeholder = self.CreatCellClass[indexPath.row][@"ModelName"];
 }
 
 @end

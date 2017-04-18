@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="2Kf-gK-13j">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="2Kf-gK-13j">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -131,8 +131,51 @@
                     <view key="view" contentMode="scaleToFill" id="OZx-Lq-x5m">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="更改视图前缀名称" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wio-cm-Nh6">
+                                <rect key="frame" x="0.0" y="20" width="375" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="n2s-uE-GJa"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iHD-TR-4jQ">
+                                <rect key="frame" x="0.0" y="70" width="375" height="547"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="g1N-aJ-hcn" id="gn9-I7-ux0"/>
+                                    <outlet property="delegate" destination="g1N-aJ-hcn" id="lw8-gq-636"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XrJ-Ax-2Ou">
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <state key="normal" title="生成cell视图"/>
+                                <connections>
+                                    <action selector="CreatViewBtn:" destination="g1N-aJ-hcn" eventType="touchUpInside" id="dkO-HY-Duv"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Wio-cm-Nh6" secondAttribute="trailing" id="A35-ZY-hUr"/>
+                            <constraint firstItem="iHD-TR-4jQ" firstAttribute="top" secondItem="Wio-cm-Nh6" secondAttribute="bottom" id="ABd-cs-uX5"/>
+                            <constraint firstItem="XrJ-Ax-2Ou" firstAttribute="top" secondItem="iHD-TR-4jQ" secondAttribute="bottom" id="CCi-C7-wm9"/>
+                            <constraint firstItem="Wio-cm-Nh6" firstAttribute="leading" secondItem="OZx-Lq-x5m" secondAttribute="leading" id="KpK-9b-oBE"/>
+                            <constraint firstItem="iHD-TR-4jQ" firstAttribute="leading" secondItem="OZx-Lq-x5m" secondAttribute="leading" id="Qlf-gm-X0p"/>
+                            <constraint firstAttribute="trailing" secondItem="XrJ-Ax-2Ou" secondAttribute="trailing" id="RWw-NQ-ux4"/>
+                            <constraint firstItem="Wio-cm-Nh6" firstAttribute="top" secondItem="oHx-Bf-DL3" secondAttribute="bottom" id="VvR-ai-DOe"/>
+                            <constraint firstItem="XrJ-Ax-2Ou" firstAttribute="leading" secondItem="OZx-Lq-x5m" secondAttribute="leading" id="c2H-kf-mpL"/>
+                            <constraint firstItem="nKc-QS-WC7" firstAttribute="top" secondItem="iHD-TR-4jQ" secondAttribute="bottom" constant="50" id="ccd-cD-FGi"/>
+                            <constraint firstAttribute="trailing" secondItem="iHD-TR-4jQ" secondAttribute="trailing" id="iXA-Cu-n0a"/>
+                            <constraint firstItem="nKc-QS-WC7" firstAttribute="top" secondItem="XrJ-Ax-2Ou" secondAttribute="bottom" id="s1x-zT-vKI"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="TextField" destination="Wio-cm-Nh6" id="Dgt-Kv-0nB"/>
+                        <outlet property="tableview" destination="iHD-TR-4jQ" id="chD-ye-P7M"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EXM-yr-cLz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

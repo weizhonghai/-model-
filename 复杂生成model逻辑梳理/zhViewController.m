@@ -15,7 +15,7 @@
     NSMutableArray *tableArray;
     NSMutableArray *cellArray;
     NSMutableDictionary *ModifyDict;
-    NSMutableArray *CreateArray;//下一个界面需要的数组
+    NSMutableArray <NSMutableDictionary *>*CreateArray;//下一个界面需要的数组 key = @"ModelName" @"InfoName"
 }
 @property (nonatomic, strong) NSDictionary *JSONDict;
 @property (weak, nonatomic) IBOutlet UITextView *JSTextView;
@@ -31,12 +31,16 @@
 @end
 static NSString *info_h;
 static NSString *info_m;
+static NSString *CreatPath;
+static NSString *CreatName;
 @implementation zhViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     info_h = @"#import <Foundation/Foundation.h>\n\n";
     info_m = @"";
+    CreatPath = @"";
+    CreatName = @"";
     self.JSTextView.layer.borderColor = [UIColor blackColor].CGColor;
     self.JSTextView.layer.borderWidth = 1;
     self.ChangeBtn.layer.borderWidth = 1;
@@ -101,7 +105,7 @@ static NSString *info_m;
         NSString *SEL_String = @"";
         for (NSString *propety in [code allKeys]) {
             //正式生成model的逻辑代码
-            NSString *before_Str = @"@property (nonatomic, ";
+            NSString *before_Str = @"\n/**\n<#注释#>\n*/\n@property (nonatomic, ";
             NSString *center_Str = @"";
             NSString *last_Str = @"";
             if ([code[propety] isKindOfClass:[NSNumber class]]) {
@@ -306,6 +310,8 @@ static NSString *info_m;
     NSData *data = [info dataUsingEncoding:NSUTF8StringEncoding];
     NSFileManager *fm = [NSFileManager defaultManager];
     [fm createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
+    CreatPath = path;
+    CreatName = last_name;
     return [data writeToFile:[path stringByAppendingPathComponent:name] atomically:YES];
 }
 
@@ -327,6 +333,9 @@ static NSString *info_m;
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 0) {
         CreatViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"Creat"];
+        vc.CreatCellClass   = CreateArray;
+        vc.path             = CreatPath;
+        vc.TotalName        = CreatName;
         [self.navigationController pushViewController:vc animated:YES];
     }
 }

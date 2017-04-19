@@ -129,6 +129,7 @@ static NSString *info_xib;
 - (void)CreatView_xib{
     NSError *error;
     NSString *string_xib = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"CreateCell" ofType:@"json"] encoding:NSUTF8StringEncoding error:&error];
+    string_xib = [string_xib stringByReplacingOccurrencesOfString:@"oneCell" withString:self.CreatClassName];
     NSData *data_xib = [string_xib dataUsingEncoding:NSUTF8StringEncoding];
     NSFileManager *fm = [NSFileManager defaultManager];
     NSString *path = [self.path stringByAppendingString:@"/View"];
@@ -145,7 +146,7 @@ static NSString *info_xib;
     [self CreatView_h];
     [self CreatView_m];
     [self CreatView_xib];
-    NSLog(@"%@\n%@\n%@",info_h,info_m,info_xib);
+    [[[UIAlertView alloc] initWithTitle:@"提示" message:@"生成完毕" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{

@@ -337,7 +337,13 @@ static NSString *CreatName;
         vc.path             = CreatPath;
         vc.TotalName        = CreatName;
         [self.navigationController pushViewController:vc animated:YES];
+        
     }
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [CreateArray removeAllObjects];
 }
 
 @end
